@@ -12,13 +12,13 @@ const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full transition-all duration-200 hover:scale-110"
+      className="rounded-full transition-all duration-300 hover:scale-110"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (
-        <Moon className="h-[1.2rem] w-[1.2rem] rotate-90 transition-all dark:rotate-0" />
+        <Moon className="h-[1.2rem] w-[1.2rem] transition-all duration-300 ease-in-out" />
       ) : (
-        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 transition-all dark:rotate-90" />
+        <Sun className="h-[1.2rem] w-[1.2rem] text-yellow-300 transition-all duration-300 ease-in-out" />
       )}
     </Button>
   );

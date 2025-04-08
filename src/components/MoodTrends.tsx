@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
@@ -15,8 +14,9 @@ import {
   ReferenceLine
 } from 'recharts';
 import { cn } from "@/lib/utils";
+import { RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-// Mock data for demonstration
 const generateMoodData = () => {
   const moodLabels = ['Happy', 'Neutral', 'Sad', 'Angry'];
   const days = 30;
@@ -28,27 +28,25 @@ const generateMoodData = () => {
       date: `04/${i <= 9 ? '0' + i : i}`,
     };
 
-    // Generate a weighted random distribution that favors happy/neutral
     moodLabels.forEach(mood => {
       let value = 0;
       
       if (mood === 'Happy') {
-        value = Math.max(30, Math.floor(Math.random() * 70) + 30); // Higher values
+        value = Math.max(30, Math.floor(Math.random() * 70) + 30);
       } else if (mood === 'Neutral') {
         value = Math.max(20, Math.floor(Math.random() * 60) + 20);
       } else if (mood === 'Sad') {
         value = Math.max(10, Math.floor(Math.random() * 40) + 10);
       } else {
-        value = Math.max(5, Math.floor(Math.random() * 30) + 5); // Lower values
+        value = Math.max(5, Math.floor(Math.random() * 30) + 5);
       }
       
-      // Add some patterns/trends
-      if (i > 10 && i < 15) { // A period of increased happiness
+      if (i > 10 && i < 15) {
         if (mood === 'Happy') value += 15;
         if (mood === 'Sad') value -= 10;
       }
       
-      if (i > 20 && i < 25) { // A period of slight sadness
+      if (i > 20 && i < 25) {
         if (mood === 'Sad') value += 20;
         if (mood === 'Happy') value -= 10;
       }
@@ -74,7 +72,6 @@ const MoodTrends = ({ className }: MoodTrendsProps) => {
     const moodData = generateMoodData();
     let currentIndex = 0;
     
-    // Progressively reveal data points
     const interval = setInterval(() => {
       if (currentIndex < moodData.length) {
         setData(prevData => [...prevData, moodData[currentIndex]]);
@@ -83,7 +80,7 @@ const MoodTrends = ({ className }: MoodTrendsProps) => {
         clearInterval(interval);
         setIsAnimating(false);
       }
-    }, 150); // Adjust speed of animation
+    }, 150);
     
     return () => clearInterval(interval);
   }, []);
@@ -98,12 +95,15 @@ const MoodTrends = ({ className }: MoodTrendsProps) => {
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle>Mood Trends Over Time</CardTitle>
         {!isAnimating && (
-          <button 
+          <Button 
+            variant="outline"
+            size="sm"
             onClick={resetAnimation}
-            className="text-sm px-2 py-1 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors"
+            className="gap-1 text-sm font-medium transition-colors bg-background text-foreground hover:bg-accent"
           >
+            <RefreshCw className="h-3.5 w-3.5" />
             Replay Animation
-          </button>
+          </Button>
         )}
       </CardHeader>
       <CardContent className="pt-0">
