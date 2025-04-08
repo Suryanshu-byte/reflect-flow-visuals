@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import MonthlyOverview from '@/components/MonthlyOverview';
 import MoodSummary from '@/components/MoodSummary';
+import MoodTrends from '@/components/MoodTrends';
 import RecentJournals from '@/components/RecentJournals';
 import EventTimeline from '@/components/EventTimeline';
 import ActivityChart from '@/components/ActivityChart';
@@ -32,6 +33,10 @@ const Dashboard = () => {
         <div>
           <MoodSummary />
         </div>
+      </div>
+      
+      <div className="mt-6">
+        <MoodTrends />
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
