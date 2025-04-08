@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import MonthlyOverview from '@/components/MonthlyOverview';
 
 interface JournalEntry {
   id: string;
@@ -85,8 +86,8 @@ const Journal = () => {
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 animate-fade-in">
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2 gradient-text">Journal Entries</h2>
-          <p className="text-lg text-gray-600">Capture your thoughts, feelings, and experiences.</p>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2 gradient-text">Journal Entries</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400">Capture your thoughts, feelings, and experiences.</p>
         </div>
         <Button 
           className="flex items-center gap-2" 
@@ -138,8 +139,8 @@ const Journal = () => {
                     </div>
                     <div className="p-4 sm:p-6 flex-1">
                       <h3 className="text-xl font-semibold mb-2">{entry.title}</h3>
-                      <p className="text-gray-600 line-clamp-2">{entry.content}</p>
-                      <div className="mt-3 text-xs text-gray-500">{format(entry.date, 'EEEE, MMMM d, yyyy')}</div>
+                      <p className="text-gray-600 dark:text-gray-300 line-clamp-2">{entry.content}</p>
+                      <div className="mt-3 text-xs text-gray-500 dark:text-gray-400">{format(entry.date, 'EEEE, MMMM d, yyyy')}</div>
                     </div>
                   </div>
                 </CardContent>
@@ -147,7 +148,7 @@ const Journal = () => {
             ))
           ) : (
             <div className="text-center py-12">
-              <p className="text-lg text-gray-500">No journal entries found.</p>
+              <p className="text-lg text-gray-500 dark:text-gray-400">No journal entries found.</p>
               <Button 
                 variant="outline" 
                 className="mt-4" 
@@ -160,11 +161,7 @@ const Journal = () => {
         </TabsContent>
         
         <TabsContent value="calendar">
-          <Card className="glass-card">
-            <CardContent className="p-6">
-              <p className="text-center text-gray-500">Calendar view is under development. Coming soon!</p>
-            </CardContent>
-          </Card>
+          <MonthlyOverview />
         </TabsContent>
       </Tabs>
     </div>
